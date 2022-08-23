@@ -1,13 +1,12 @@
 <?php
-
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
     use PHPMailer\PHPMailer\SMTP;
 
     // Файлы PHPMailer
-    require 'PHPMailer/PHPMailer.php';
-    require 'PHPMailer/SMTP.php';
-    require 'PHPMailer/Exception.php';
+    require 'phpmailer/src/PHPMailer.php';
+    require 'phpmailer/src/SMTP.php';
+    require 'phpmailer/src/Exception.php';
 
     $mail = new PHPMailer(true);
     $mail->CharSet = 'UTF-8';
@@ -15,7 +14,7 @@
     $mail->IsHTML(true);
 
     $mail->isSMTP();
-    $mail->Host       = 'smtp.mail.com';
+    $mail->Host       = 'smtp.mail.ru';
     $mail->SMTPAuth   = true;                    
     $mail->Username   = 'zapasnaya_pochta_95'; 
     $mail->Password   = 'rf0Jgf2wvwJeBCzcKFNs';
