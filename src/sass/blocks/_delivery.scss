@@ -1,0 +1,14 @@
+.delivery {
+    padding: 70px 0 50px;
+    &__descr {
+        margin: 50px 0 0;
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 1.2;
+        p {
+            &:not(:last-child) {
+                margin: 0 0 10px 0;
+            }
+        }
+    }
+}

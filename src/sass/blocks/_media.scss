@@ -1,0 +1,411 @@
+@media (max-width: 1119px) {
+    .catalog {
+        &-item {
+            width: 400px;
+            min-height: 400px;
+            &__img {
+                height: 280px;
+            }
+        }
+    }
+}
+
+@media (max-width: 991px) {
+    .catalog {
+        &-item {
+            width: 350px;
+            min-height: 350px;
+            &__img {
+                height: 250px;
+            }
+        }
+    }
+    .first {
+        padding: 100px 0 20px 50px;
+        &__wrapper {
+            max-width: 440px;
+        }
+        &__title {
+            font-size: 30px;
+        }
+        &__subtitle {
+            font-size: 22px;
+        }
+        &__image {
+            object-position: bottom;
+        }
+    }
+    .services {
+        padding: 50px 0;
+        &__wrapper {
+            margin: 10px;
+        }
+        &__items {
+            padding: 30px 0 0;
+        }
+    }
+    .catalog {
+        padding: 50px 0;
+    }
+    .delivery {
+        padding: 50px 0;
+    }
+    .contacts {
+        padding: 50px 0 20px 0;
+        &__title {
+            margin: 30px 0 0 0;
+        }
+        &__row {
+            margin: 30px 0 0 0;
+        }
+        &__subtitle {
+            margin: 30px 0 0 0;
+        }
+    }
+    .form {
+        padding: 30px 0;
+    }
+    .footer {
+        &__year {
+            font-size: 14px;
+        }
+        &__requisites {
+            font-size: 14px;
+        }
+        &__icon {
+            margin: 0 10px 0 0;
+        }
+        &__numbers, &__email {
+            a {
+                font-size: 14px;
+            }
+        }
+        &__mail {
+            a {
+                font-size: 14px;
+            }
+        }
+        &__location {
+            font-size: 14px;
+        }
+    }
+    .item {
+        &__icon {
+            width: 60px;
+            height: 60px;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .block-title {
+        font-size: 35px;
+    }
+    .first {
+        &__button {
+            max-width: 200px;
+        }
+        &__link {
+            min-height: 50px;
+        }
+        &::before {
+            display: block;
+        }
+    }
+    .services {
+        padding: 50px 0 0 0;
+    }
+    .header {
+        &__burger {
+            display: block;
+            position: relative;
+            z-index: 3;
+            width: 30px;
+            height: 20px;
+            span {
+                position: absolute;
+                background-color: #fff;
+                left: 0;
+                top: 9px;
+                width: 100%;
+                height: 2px;
+                transition: all 0.3s ease 0s;
+            }
+            &::before, &::after {
+                content: "";
+                background-color: #fff;
+                position: absolute;
+                width: 100%;
+                height: 2px;
+                left: 0;
+                transition: all 0.5s ease 0s;
+            }
+            &::before {
+                top: 0;
+            }
+            &::after {
+                bottom: 0;
+            }
+        }
+        &__menu {
+            position: fixed;
+            overflow: auto;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background-color: $main-color;
+            transition: all 0.5s ease 0s;
+            padding: 70px 20px 20px 30px;
+        }
+        &__wrapper {
+            height: 50px;
+            justify-content: flex-end;
+        }
+    }
+
+    .menu {
+        &__list {
+            display: block;
+            text-align: center;
+        }
+        &__item {
+            display: block;
+            font-size: 24px;
+            &:not(:last-child) {
+                margin: 0 0 30px 0;
+            }
+        }
+    }
+
+    .header__burger.active::before {
+        transform: rotate(45deg);
+        top: 9px;
+    }
+    .header__burger.active::after {
+        transform: rotate(-45deg);
+        bottom: 9px;
+    }
+    .header__burger.active span {
+        transform: scale(0);
+    }
+    .header__menu.active {
+        left: 0;
+    }
+    body.lock {
+        overflow: hidden;
+    } 
+
+    .catalog {
+        &-item {
+            width: 400px;
+            min-height: 400px;
+            &__img {
+                height: 280px;
+            }
+        }
+        &__content {
+            margin-top: 40px;
+        }
+    }
+
+    .item {
+        &__text {
+            font-size: 18px;
+        }
+    }
+
+    .contacts {
+        &__icon {
+            margin: 0 20px 0 0;
+        }
+        &__row {
+           flex-direction: column; 
+           margin: 20px 0 0 0;
+        }
+        &__column {
+            &:not(:last-child) {
+                margin: 0 0 10px 0;
+            }
+        }
+        &__title, &__subtitle {
+            margin: 50px 0 0 0;
+        }
+    }
+    .form {
+        &__button {
+            min-height: 50px;
+        }
+    }
+    .footer {
+        &__wrapper {
+            flex-direction: column;
+        }
+        &__year {
+            order: 1;
+            font-size: 16px;
+            justify-content: center;
+        }
+        &__phones {
+            justify-content: center;
+        }
+        &__wrapper-contacts {
+            order: 2;
+            justify-content: center;
+            margin: 20px 0 0 0;
+        }
+        &__requisites {
+            order: 3;
+            font-size: 16px;
+            justify-content: center;
+            margin: 20px 0 0 0;
+        }
+        &__numbers {
+            a {
+                font-size: 16px;
+            }
+        }
+        &__email {
+            justify-content: center;
+            a {
+                font-size: 16px;
+            }
+        }
+        &__location {
+            font-size: 16px;
+            text-align: center;
+        }
+        &__list {
+            text-align: center;
+        }
+    }
+}
+
+@media (max-width: 576px) {
+    .catalog {
+        &-item {
+            width: 280px;
+            min-height: 350px;
+            &__img {
+                height: 240px;
+            }
+            &__list {
+                li {
+                    margin-bottom: 10px;
+                }
+            }
+        }
+    }
+    .first {
+        padding: 80px 20px 20px 20px;
+        &__title {
+            font-size: 25px;
+        }
+        &__subtitle {
+            font-size: 20px;
+        }
+        &__link {
+            font-size: 16px;
+        }
+        &__wrapper {
+            max-width: 100%;
+            & > *:not(:last-child) {
+                margin: 0 0 45px 0; 
+            }
+        }
+        &__button {
+            max-width: 100%;
+        }
+        &__link {
+            min-height: 45px;
+        }
+    }
+    .block-title {
+        font-size: 30px;
+    }
+    .item {
+        & > *:not(:last-child) {
+            margin: 0 0 20px 0;
+        }
+    }
+    .services {
+        &__item {
+            padding: 10px 15px;
+        }
+    }
+    .catalog {
+        padding: 0px 0 30px 0;
+    }
+    .contacts {
+        padding: 30px 0 20px 0;
+        &__row {
+            margin: 10px 0 0 0;
+        }
+        &__title, &__subtitle {
+            font-size: 20px;
+            margin: 35px 0 0 0;
+        }
+        &__icon {
+            width: 20px;
+            height: 20px;
+            margin: 0 10px 0 0;
+        }
+        &__phones {
+            a {
+                font-size: 18px;
+            }
+        }
+        &__mail {
+            a {
+                font-size: 18px;
+            }
+        }
+    }
+    .form {
+        padding: 20px 0 30px 0;
+        &__label {
+            font-size: 18px;
+        }
+        &__button {
+            font-size: 16px;
+        }
+    }
+    .delivery {
+        &__descr {
+            font-size: 18px;
+        }
+    }
+}
+
+@media (min-width: 337px) and (max-width: 359px) {
+    .first {
+        padding: 90px 20px 20px 20px;
+        &__wrapper {
+            & > *:not(:last-child) {
+                margin: 0 0 55px 0; 
+            }
+        }
+    }
+}
+
+@media (min-width: 360px) and (max-width: 434px) {
+    .first {
+        padding: 90px 20px 20px 20px;
+        &__wrapper {
+            & > *:not(:last-child) {
+                margin: 0 0 70px 0; 
+            }
+        }
+    }
+}
+
+@media (min-width: 435px) and (max-width: 576px) {
+    .first {
+        padding: 110px 20px 20px 20px;
+        &__wrapper {
+            & > *:not(:last-child) {
+                margin: 0 0 85px 0; 
+            }
+        }
+    }
+}

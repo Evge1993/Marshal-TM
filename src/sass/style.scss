@@ -1,0 +1,48 @@
+@import 'libs/reset';
+
+@import 'base/fonts';
+@import 'base/variables';
+@import 'base/mixins';
+@import 'blocks/header';
+@import 'blocks/first';
+@import 'blocks/about';
+@import 'blocks/services';
+@import 'blocks/catalog';
+@import 'blocks/delivery';
+@import 'blocks/contacts';
+@import 'blocks/footer';
+@import 'blocks/policy';
+
+
+body {
+    font-family: 'Roboto', Verdana, Arial, sans-serif;
+    font-weight: 500;
+    font-size: 30px;
+    color: $main-text-color;
+}
+
+.container {
+    max-width: 1180px;
+    padding: 0 20px;
+    margin: 0 auto;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.main {
+    flex: 1 1 auto;
+}
+
+.block-title {
+    font-size: 40px;
+    line-height: 1.2;
+    text-align: center;
+    font-weight: 700;
+}
+
+@import 'blocks/media';
