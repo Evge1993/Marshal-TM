@@ -8,7 +8,7 @@ require 'phpmailer/Exception.php';
 $name = $_POST['name'];
 $email = $_POST['email'];
 $phone = $_POST['phone'];
-$text = $_POST['text'];
+$texta = $_POST['texta'];
 $file = $_FILES['file'];
 
 // Формирование самого письма
@@ -18,7 +18,7 @@ $body = "
 <b>Имя:</b> $name<br>
 <b>Почта:</b> $email<br>
 <b>Телефон:</b> $phone<br><br>
-<b>Сообщение:</b><br>$text
+<b>Сообщение:</b><br>$texta
 ";
 
 // Валидация почты
