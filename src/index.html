@@ -356,42 +356,42 @@
 
                     <div class="contacts__subtitle">Если остались вопросы:</div>
 
-                    <div class="form">
-                        <form action="#" id="form" class="form__body">
-                            <div class="form__item">
-                                <label for="formName" class="form__label">Ваше имя<span>*</span>:</label>
-                                <input id="formName" type="text" name="name" class="form__input _req">
-                            </div>
-
-                            <div class="form__item">
-                                <label for="formEmail" class="form__label">Ваш E-mail<span>*</span>:</label>
-                                <input id="formEmail" type="text" name="email" class="form__input _req _email">
-                            </div>
-
-                            <div class="form__item">
-                                <label for="formPhone" class="form__label">Ваш телефон:</label>
-                                <input id="formPhone" type="tel" name="phone" class="form__input">
-                            </div>
-
-                            <div class="form__item">
-                                <label for="formMessage" class="form__label">Ваше сообщение:</label>
-                                <textarea name="message" id="formMessage" class="form__input"></textarea>
-                            </div>
-
-                            <div class="form__item">
-                                <div class="checkbox">
-                                    <input id="formAgreement" type="checkbox" name="agreement" class="checkbox__input _req" checked>
-                                    <label for="formAgreement" class="checkbox__label">
-                                        <span>Я даю свое согласие на обработку персональных данных в соответствии с <a target="_blank" href="policy.html">Условиями</a><span class="checkbox__red">*</span></span>
-                                    </label>
-                                </div>
-                            </div>
-
-                            <button type="submit" class="form__button">Отправить</button>
-                        </form>
-                    </div>
+                    <div class="msg" onclick="gsapMsg.reverse()">Сообщение</div>
+                    <div class="wrap">
+                    <form enctype="multipart/form-data" method="post" id="form" onsubmit="send(event, 'send.php')">
+                        <div class="group-input">
+                        <div class="group-text-input">
+                        <div class="input-wrap">
+                            <input name="name" id="name" type="text" class="form-input aInput" autocomplete="off" required>
+                            <label for="name" class="input-label">Имя*</label>
+                        </div>
+                        <div class="input-wrap">
+                            <input name="email" id="email" type="text" class="form-input aInput" autocomplete="off" required>
+                            <label for="email" class="input-label">E-mail*</label>
+                        </div>
+                        <div class="input-wrap">
+                            <input name="phone" id="phone" type="tel" class="form-input aInput" autocomplete="off">
+                            <label for="phone" class="input-label">Телефон</label>
+                        </div>
+                        </div>
+                        <div class="input-wrap">
+                            <textarea name="texta" id="texta" class="aInput"></textarea>
+                            <label for="texta" class="area-label">Сообщение</label>
+                        </div>
+                        </div>
+                        <div class="file-wrap">
+                            <label for="myfile" class="labelFile">
+                                <img src="https://img.icons8.com/ios/50/000000/upload-to-cloud.png"/>
+                                <p class="count">Прикрепить файлы</p>
+                            </label>
+                            <input type="file" multiple class="inputFile" id="myfile" name="file[]" multiple="multiple" onchange="inputFile(event)"/>
+                        </div>
+                        <button type="submit" class="button right">Отправить</button>
+                        <div class="policy">
+                            Нажимая кнопку «Отправить», Вы подтверждаете, что ознакомились с <a href="policy.html" target="_blank">политикой обработки персональных данных</a>
+                        </div>
+                    </form>            
                 </div>
-
             </section>
         </main>
     
@@ -438,7 +438,8 @@
     </div>
     <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-    <script src="js/jquery.maskedinput.min.js"></script>
+    <script src="js/jQuery.js"></script>
+    <script src="js/gsap.min.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>

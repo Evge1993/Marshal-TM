@@ -1,99 +1,78 @@
 <?php
-    use PHPMailer\PHPMailer\PHPMailer;
-    use PHPMailer\PHPMailer\Exception;
-    use PHPMailer\PHPMailer\SMTP;
+// Файлы phpmailer
+require 'phpmailer/PHPMailer.php';
+require 'phpmailer/SMTP.php';
+require 'phpmailer/Exception.php';
 
-    // Файлы PHPMailer
-    require 'phpmailer/src/PHPMailer.php';
-    require 'phpmailer/src/SMTP.php';
-    require 'phpmailer/src/Exception.php';
+// Переменные, которые отправляет пользователь
+$name = $_POST['name'];
+$email = $_POST['email'];
+$phone = $_POST['phone'];
+$text = $_POST['text'];
+$file = $_FILES['file'];
 
-    $mail = new PHPMailer(true);
-    $mail->CharSet = 'UTF-8';
-    $mail->setLanguage('ru', 'phpmailer/language/');
-    $mail->IsHTML(true);
+// Формирование самого письма
+$title = "Сообщение с сайта";
+$body = "
+<h2>Новое сообщение</h2>
+<b>Имя:</b> $name<br>
+<b>Почта:</b> $email<br>
+<b>Телефон:</b> $phone<br><br>
+<b>Сообщение:</b><br>$text
+";
 
-    $mail->isSMTP();
-    $mail->Host       = 'smtp.mail.ru';
-    $mail->SMTPAuth   = true;                    
-    $mail->Username   = 'zapasnaya_pochta_95'; 
-    $mail->Password   = 'rf0Jgf2wvwJeBCzcKFNs';
+// Валидация почты
+if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+
+// Настройки PHPMailer
+$mail = new PHPMailer\PHPMailer\PHPMailer();
+try {
+    $mail->isSMTP();   
+    $mail->CharSet = "UTF-8";
+    $mail->SMTPAuth   = true;
+    //$mail->SMTPDebug = 2;
+    $mail->Debugoutput = function($str, $level) {$GLOBALS['status'][] = $str;};
+
+    // Настройки вашей почты
+    $mail->Host       = 'smtp.mail.ru'; // SMTP сервера вашей почты
+    $mail->Username   = 'zapasnaya_pochta_95'; // Логин на почте
+    $mail->Password   = 'rf0Jgf2wvwJeBCzcKFNs'; // Пароль на почте
     $mail->SMTPSecure = 'ssl';
     $mail->Port       = 465;
+    $mail->setFrom('zapasnaya_pochta_95@mail.ru', 'Метизная компания'); // Адрес самой почты и имя отправителя
 
-    $mail->setFrom('zapasnaya_pochta_95@mail.ru', 'Сообщение с сайта');
+    // Получатель письма
+    $mail->addAddress('kompaniya.metiznaya@mail.ru');  
 
-    $mail->addAddress('kompaniya.metiznaya@mail.ru');
-
-    $mail->Subject = 'Сообщение с сайта';
-
-    $body = '<h2>Сообщение с сайта</h2>';
-
-    if(trim(!empty($_POST['name']))){
-        $body.='<p><strong>Имя:</strong> '.$_POST['name'].'</p>';
-    }
-
-    if(trim(!empty($_POST['email']))){
-        $body.='<p><strong>E-mail:</strong> '.$_POST['email'].'</p>';
-    }
-
-    if(trim(!empty($_POST['phone']))){
-        $body.='<p><strong>Телефон:</strong> '.$_POST['phone'].'</p>';
-    }
-
-    if(trim(!empty($_POST['message']))){
-        $body.='<p><strong>Сообщение:</strong> '.$_POST['message'].'</p>';
-    }
-
-    $mail->Body = $body;
-
-    if (!$mail->send()) {
-        $message = 'Ошибка';
-    } else {
-        $message = 'Сообщение отправлено';
-    }
-
-    $response = ['message' => $message];
-
-    header('Content-type: application/json');
-    echo json_encode($response);
-?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-try {
-
-
-
-    $mail->CharSet = 'UTF-8';
-
-
-
-    $mail->isHTML(true);
-    $mail->Subject = 'Сообщение с сайта';
-    $body = '<h2>Сообщение с сайта</h2>';
-
-    
-
-    $mail->Body = $body;  
-
-    $mail->send();
-    echo 'Сообщение отправлено';
-} catch (Exception $e) {
-    echo "Ошибка: {$mail->ErrorInfo}";
+    // Прикрипление файлов к письму
+if (!empty($file['name'][0])) {
+    for ($ct = 0; $ct < count($file['tmp_name']); $ct++) {
+        $uploadfile = tempnam(sys_get_temp_dir(), sha1($file['name'][$ct]));
+        $filename = $file['name'][$ct];
+        if (move_uploaded_file($file['tmp_name'][$ct], $uploadfile)) {
+            $mail->addAttachment($uploadfile, $filename);
+            $rfile[] = "Файл $filename прикреплён";
+        } else {
+            $rfile[] = "Не удалось прикрепить файл $filename";
+        }
+    }   
 }
+// Отправка сообщения
+$mail->isHTML(true);
+$mail->Subject = $title;
+$mail->Body = $body;    
+
+// Проверяем отравленность сообщения
+if ($mail->send()) {$result = "success";} 
+else {$result = "error";}
+
+} catch (Exception $e) {
+    $result = "error";
+    $status = "Сообщение не было отправлено. Причина ошибки: {$mail->ErrorInfo}";
+}
+} else {
+	$result = "email";
+}
+// Отображение результата
+echo json_encode(["result" => $result, "resultfile" => $rfile, "status" => $status]);
 ?>
