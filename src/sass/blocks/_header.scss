@@ -26,6 +26,11 @@
         display: none;
     }
 }
+.header__burger.active {
+    -webkit-transform: translateY(0px);
+    -ms-transform: translateY(0px);
+        transform: translateY(0px);
+}
 
 .menu {
     &__list {
